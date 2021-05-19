@@ -17,12 +17,13 @@ public class Medicine {
         chargeList = new ArrayList<>();
     }
 
-    public Charge addCharge(Charge charge){
+//Uitzoeken of Edum een toevoeging is om ipv return Null een andere waarde terug te geven
+    public boolean addCharge(Charge charge){
         if(findCharge(charge.getChargeNumber()) >0){
-            return null;
+            return false;
         }
         chargeList.add(charge);
-        return charge;
+        return true;
     }
 
 
@@ -36,9 +37,13 @@ public class Medicine {
         return -1;
     }
 
+    public String getName() {
+        return name;
+    }
 
-
-
+    public double getPrice() {
+        return price;
+    }
 
     public String getNumber() {
         return number;
@@ -52,4 +57,6 @@ public class Medicine {
                 ", price=" + price +
                 '}';
     }
+
+
 }

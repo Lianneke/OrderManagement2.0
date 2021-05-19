@@ -14,13 +14,13 @@ public class Store {
     }
 
 
-
-    public Medicine addMedicine(Medicine medicine){
+    //Uitzoeken of Edum een toevoeging is om ipv return Null een andere waarde terug te geven
+    public Boolean addMedicine(Medicine medicine){
         if(findMedicine(medicine.getNumber()) >0){
-            return null;
+            return false;
         }
         medicineList.add(medicine);
-        return medicine;
+        return true;
     }
 
     private int findMedicine(Medicine medicine) {
@@ -35,6 +35,15 @@ public class Store {
             }
         }
         return -1;
+    }
+
+    public Medicine queryMedicine(String number) {
+        int position = findMedicine(number);
+        if(position >=0) {
+            return this.medicineList.get(position);
+        }
+
+        return null;
     }
 
     public List<Medicine> getMedicineList(){

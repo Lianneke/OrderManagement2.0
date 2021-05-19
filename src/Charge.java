@@ -15,4 +15,21 @@ public class Charge {
     public String getChargeNumber() {
         return chargeNumber;
     }
+
+    public LocalDate getExpirationDate() {
+        return expirationDate;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Charge{" +
+                "chargeNumber='" + chargeNumber + '\'' +
+                ", expirationDate=" + expirationDate +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

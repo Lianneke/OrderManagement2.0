@@ -23,4 +23,16 @@ public class Customer {
     public String getCustomerID() {
         return customerID;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerID='" + customerID + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", telephoneNumber='" + telephoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", orderList=" + orderList +
+                '}';
+    }
 }

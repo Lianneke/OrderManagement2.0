@@ -13,12 +13,12 @@ public class Pharmacy {
         customerList = new ArrayList<>();
     }
 
-    public Customer addCustomer(Customer customer){
+    public boolean addCustomer(Customer customer){
         if(findCustomer(customer.getCustomerID()) >0){
-            return null;
+            return false;
         }
         customerList.add(customer);
-        return customer;
+        return true;
     }
 
 
