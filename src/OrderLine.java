@@ -3,11 +3,13 @@ public class OrderLine {
     private Medicine medicine;
     private Charge charge;
     private int quantity;
+    private double price;
 
-    public OrderLine(Medicine medicine, Charge charge, int quantity) {
+    public OrderLine(Medicine medicine, Charge charge, int quantity, double price) {
         this.medicine = medicine;
         this.charge = charge;
         this.quantity = quantity;
+        this.price = price;
     }
 
     public Medicine getMedicine() {
@@ -20,6 +22,10 @@ public class OrderLine {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     @Override

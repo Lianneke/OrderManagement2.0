@@ -19,6 +19,41 @@ public class Main {
         // Adding new customers, so I can do some test while buidling this application
         pharmacy.addCustomer(new Customer("1", "ETZ", "Teststraat 6", "06100000", "test@testmail.com"));
         pharmacy.addCustomer(new Customer("2", "MUMC", "teststraat 10", "06112112", "MUMC@testmail.nl"));
+        Customer customer1 = new Customer("3", "AMC", "test", "068521476", "AMC@testmail.net");
+
+        //Adding new orders, so I can do some test while building this application
+        Medicine medicine1 = new Medicine("751", "Papaverine", 1.90);
+        Medicine medicine2 = new Medicine("987", "Ibuprofen", 4.90);
+        Medicine medicine3 = new Medicine("654", "Naproxen", 3.80);
+        Medicine medicine4 = new Medicine("321", "Diclofenac", 1.99);
+
+        Charge charge1 = new Charge("A15", localDate.of(2022,1,1),500);
+        Charge charge2 = new Charge("B85", 2022-07-09, 600);
+        Charge charge3 = new Charge("C78", 2021-06-05, 900);
+        Charge charge4 = new Charge("A85", 22-09-05, 1500);
+        Charge charge5 = new Charge("X01", 22-05-07, 20);
+        Charge charge6 = new Charge("Q83", 21-10-12, 345);
+
+        medicine1.addCharge(charge1);
+        medicine1.addCharge(charge2);
+        medicine2.addCharge(charge3);
+        medicine2.addCharge(charge4);
+        medicine3.addCharge(charge5);
+        medicine4.addCharge(charge6);
+
+        OrderLine orderLine1 = new OrderLine(medicine1, charge1, 50, medicine1.getPrice());
+        OrderLine orderLine2 = new OrderLine(medicine2, charge2, 50, medicine2.getPrice());
+        OrderLine orderLine3 = new OrderLine(medicine3, charge5, 10, medicine3.getPrice());
+        OrderLine orderLine4 = new OrderLine(medicine4, charge6, 20, medicine4.getPrice());
+
+        Order order1 = new Order(customer1, 8430409);
+        Order order2 = new Order(customer1, 8237934);
+
+        order1.addNewOrderLine(orderLine1);
+        order1.addNewOrderLine(orderLine2);
+        order2.addNewOrderLine(orderLine3);
+        order2.addNewOrderLine(orderLine4);
+
 
         boolean quit = false;
         printOptions();
@@ -113,15 +148,7 @@ public class Main {
             scanner.nextLine();
 
             if(input == 2) {
-                System.out.println("Let's check of you've god some discount today");
-                boolean discountAvailable = discountExpirationDate.checkIfListIsQualifiedForDiscount(order);
-
-                if(!discountAvailable){
-                    System.out.println("No discount today!!");
-                    System.out.println(order.getOrderLines());
-                }
-            System.out.println("Woehoew! You god your self some discount!!\n" +
-                    order.getOrderLines());
+                printData(order.getOrderLines());
                 break;
             }else {
 
@@ -147,7 +174,23 @@ public class Main {
                     System.out.println("Charge not found");
                     return;
                 }
-                System.out.println("How many pieces do you want to order?");
+
+                System.out.println("Let's check of you've god some discount today");
+                boolean discountAvailable = discountExpirationDate.checkIfListIsQualifiedForDiscount(existingChargeNumber, existingMedicineRecord);
+                double price = 0;
+
+                if (!discountAvailable) {
+                    System.out.println("No discount today!!");
+                    price = existingMedicineRecord.getPrice();
+                    System.out.println("You pay the normal price: " + price);
+                }
+                System.out.println("Woehoew! You god your self some discount!!\n");
+                price = discountExpirationDate.calculateDiscount(existingMedicineRecord);
+
+                System.out.println("The normal price is: " + existingMedicineRecord.getPrice() + "The discount price is: " + price);
+
+
+                    System.out.println("How many pieces do you want to order?");
                 int pieces = scanner.nextInt();
 
                 boolean quantitycheck = existingChargeNumber.checkAndSetQuantity(pieces);
@@ -156,23 +199,17 @@ public class Main {
                     System.out.println("We don't have enough of this charge in our store, please try again");
                     return;
                 }
-                OrderLine newOrderLine = new OrderLine(existingMedicineRecord, existingChargeNumber, pieces);
+                OrderLine newOrderLine = new OrderLine(existingMedicineRecord, existingChargeNumber, pieces, price);
 
                 order.addNewOrderLine(newOrderLine);
             }
                 System.out.println(order.getOrderLines());
-//                System.out.println("Let's check of you've god some discount today");
-//                boolean discountAvailable = discountExpirationDate.checkIfListIsQualifiedForDiscount(order);
-//
-//                if(!discountAvailable){
-//                    System.out.println("No discount today!!");
-//                    System.out.println(order.getOrderLines());
-//                }
-//            System.out.println("Woehoew! You god your self some discount!!\n" +
-//                    order.getOrderLines());
 
             }
-        }
+
+
+            }
+
 
 
    private static void collectDataToSearchForMedicine(){

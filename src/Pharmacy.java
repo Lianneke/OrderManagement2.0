@@ -7,12 +7,14 @@ public class Pharmacy {
     private final String name;
     private List<Customer> customerList;
     private List<Order> orderList;
+    private List<Medicine> medicineList;
 
     public Pharmacy(String name) {
         this.name = "CZE";
 
         customerList = new ArrayList<>();
         orderList = new ArrayList<>();
+        medicineList = new ArrayList<>();
     }
 
     public boolean addCustomer(Customer customer){
@@ -22,6 +24,7 @@ public class Pharmacy {
         customerList.add(customer);
         return true;
     }
+
 
     private void addOrder(Order order){
 

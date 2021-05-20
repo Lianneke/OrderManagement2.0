@@ -1,7 +1,9 @@
 public interface IPriceCalculator {
 
-    boolean checkIfListIsQualifiedForDiscount(Order order);
-    void calculateDiscount(Medicine medicine);
+
+    boolean checkIfListIsQualifiedForDiscount(Charge charge, Medicine medicine);
+
+    double calculateDiscount(Medicine medicine);
 
 
 

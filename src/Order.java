@@ -6,6 +6,7 @@ public class Order {
 
     private Customer customer;
     private long orderNumber;
+    private double totalPrice;
     private List<OrderLine> orderLineList;
 
     public Order(Customer customer, long orderNumber) {
@@ -22,6 +23,14 @@ public class Order {
     public List<OrderLine> getOrderLines(){
         return Collections.unmodifiableList(orderLineList);
     }
+
+//    public void calculate(Order order){
+//        double sum = 0;
+//        for(int i = 0; i < orderLineList.size(); i==){
+//            sum += orderLineList.g
+//        }
+//    }
+
 
 
     //kijken of dit netjes onder elkaar gezet kan worden.
