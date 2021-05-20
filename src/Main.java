@@ -44,7 +44,8 @@ public class Main {
                         case 1:
                             printData(store.getMedicineList());
                             break;
-//                        case 2:
+                        case 2:
+                            searchCustomer();
                         default:
                             printCustomerOptions();
 
@@ -101,7 +102,62 @@ public class Main {
         }
     }
 
-    private static void collectDataToSearchForMedicine(){
+    private static void order(Order order){
+
+        int k = -1;
+
+        while (true){
+            System.out.println("Enter 1 to add a new orderline, enter 2 to quit");
+            int input = scanner.nextInt();
+            scanner.nextLine();
+
+            if(input == 2)
+                break;
+            else {
+                k++;
+
+                printData(store.getMedicineList());
+
+                System.out.println("Enter medicineID");
+                String medicineNumber = scanner.nextLine();
+
+                Medicine existingMedicineRecord = store.queryMedicine(medicineNumber);
+
+                if (existingMedicineRecord == null) {
+                    System.out.println("medicine not found");
+                    return;
+                }
+                printData(existingMedicineRecord.getChargeList());
+
+                System.out.println("Enter chargeID");
+                String chargeNumber = scanner.nextLine();
+
+                Charge existingChargeNumber = existingMedicineRecord.queryCharge(chargeNumber);
+
+                if (existingChargeNumber == null) {
+                    System.out.println("Charge not found");
+                    return;
+                }
+                System.out.println("How many pieces do you want to order?");
+                int pieces = scanner.nextInt();
+
+                boolean quantitycheck = existingChargeNumber.checkAndSetQuantity(pieces);
+
+                if (!quantitycheck) {
+                    System.out.println("We don't have enough of this charge in our store, please try again");
+                    return;
+                }
+                OrderLine newOrderLine = new OrderLine(existingMedicineRecord, existingChargeNumber, pieces);
+
+                order.addNewOrderLine(newOrderLine);
+            }
+                System.out.println(order.getOrderLines());
+
+            }
+        }
+
+
+   private static void collectDataToSearchForMedicine(){
         System.out.println("Enter identificationnumber: ");
         String number = scanner.nextLine();
         searchMedicine(number);
@@ -109,7 +165,7 @@ public class Main {
 
     private static void searchMedicine(String number) {
         Medicine existingMedicineRecord = store.queryMedicine(number);
-        if (existingMedicineRecord.equals(null)) {
+        if (existingMedicineRecord == null) {
             System.out.println("You made a mistake when entering the medicine number, please try again");
             return;
         }
@@ -157,7 +213,29 @@ public class Main {
         }
     }
 
+    private static void searchCustomer(){
+        printData(pharmacy.getCustomerList());
+        System.out.println("Enter your customerID");
+        String customerID = scanner.nextLine();
 
+        Customer existingCustomerRecord = pharmacy.queryCustomer(customerID);
+
+        if(existingCustomerRecord == null){
+            System.out.println("Customer not found");
+            return;
+        }
+        System.out.println("Welcome " + existingCustomerRecord.getName());
+
+        createNewOrder(existingCustomerRecord);
+    }
+
+    //Find a solution to generate a new ordernumber automatically
+    private static void createNewOrder(Customer customer){
+        System.out.println("Enter date+time. Example 202105101229");
+        long orderNumber = scanner.nextLong();
+        Order newOrder = new Order(customer, orderNumber);
+        order(newOrder);
+    }
 
     private static void printOptions(){
         System.out.println("\nAvailable actions:\npress");

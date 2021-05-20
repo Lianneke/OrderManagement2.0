@@ -24,6 +24,10 @@ public class Customer {
         return customerID;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +

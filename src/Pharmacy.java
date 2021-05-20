@@ -32,6 +32,15 @@ public class Pharmacy {
         return -1;
     }
 
+    public Customer queryCustomer(String customerID) {
+        int position = findCustomer(customerID);
+        if(position >=0) {
+            return this.customerList.get(position);
+        }
+
+        return null;
+    }
+
 
     public List<Customer> getCustomerList(){
         return Collections.unmodifiableList(customerList);

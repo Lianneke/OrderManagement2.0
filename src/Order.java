@@ -13,4 +13,19 @@ public class Order {
 
         orderLineList = new ArrayList<>();
     }
+
+    public void addNewOrderLine(OrderLine orderLine){
+        orderLineList.add(orderLine);
+    }
+
+    public List<OrderLine> getOrderLines(){
+        return this.orderLineList;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderLineList=" + orderLineList +
+                '}';
+    }
 }

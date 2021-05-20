@@ -12,6 +12,14 @@ public class Charge {
         this.quantity = quantity;
     }
 
+    public boolean checkAndSetQuantity(int quantity){
+        if(this.quantity <= quantity){
+            return false;
+        }
+        this.quantity = this.quantity-quantity;
+        return true;
+    }
+
     public String getChargeNumber() {
         return chargeNumber;
     }

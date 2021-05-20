@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Medicine {
@@ -37,6 +38,15 @@ public class Medicine {
         return -1;
     }
 
+    public Charge queryCharge(String number) {
+        int position = findCharge(number);
+        if(position >=0) {
+            return this.chargeList.get(position);
+        }
+
+        return null;
+    }
+
     public String getName() {
         return name;
     }
@@ -47,6 +57,10 @@ public class Medicine {
 
     public String getNumber() {
         return number;
+    }
+
+    public List<Charge> getChargeList(){
+        return Collections.unmodifiableList(chargeList);
     }
 
     @Override
