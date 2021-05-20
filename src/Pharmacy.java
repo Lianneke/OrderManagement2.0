@@ -6,11 +6,13 @@ public class Pharmacy {
 
     private final String name;
     private List<Customer> customerList;
+    private List<Order> orderList;
 
     public Pharmacy(String name) {
         this.name = "CZE";
 
         customerList = new ArrayList<>();
+        orderList = new ArrayList<>();
     }
 
     public boolean addCustomer(Customer customer){
@@ -19,6 +21,11 @@ public class Pharmacy {
         }
         customerList.add(customer);
         return true;
+    }
+
+    private void addOrder(Order order){
+
+        orderList.add(order);
     }
 
 
@@ -45,4 +52,10 @@ public class Pharmacy {
     public List<Customer> getCustomerList(){
         return Collections.unmodifiableList(customerList);
     }
+
+    public List<Order> getOrderList(){
+        return Collections.unmodifiableList(orderList);
+    }
+
+
 }

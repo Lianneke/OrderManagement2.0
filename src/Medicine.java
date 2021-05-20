@@ -59,6 +59,10 @@ public class Medicine {
         return number;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public List<Charge> getChargeList(){
         return Collections.unmodifiableList(chargeList);
     }

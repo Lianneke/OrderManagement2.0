@@ -6,6 +6,7 @@ public class Main {
 
     private final static Store store = new Store("CZE");
     private final static Pharmacy pharmacy = new Pharmacy("CZE");
+    private final static DiscountExpirationDate discountExpirationDate = new DiscountExpirationDate();
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -73,6 +74,8 @@ public class Main {
                         case 4:
                             addNewCustomer();
                             break;
+                        case 5:
+                            printData(pharmacy.getOrderList());
                         default:
                             printEmployeeOptions();
                     }
@@ -109,9 +112,18 @@ public class Main {
             int input = scanner.nextInt();
             scanner.nextLine();
 
-            if(input == 2)
+            if(input == 2) {
+                System.out.println("Let's check of you've god some discount today");
+                boolean discountAvailable = discountExpirationDate.checkIfListIsQualifiedForDiscount(order);
+
+                if(!discountAvailable){
+                    System.out.println("No discount today!!");
+                    System.out.println(order.getOrderLines());
+                }
+            System.out.println("Woehoew! You god your self some discount!!\n" +
+                    order.getOrderLines());
                 break;
-            else {
+            }else {
 
                 printData(store.getMedicineList());
 
@@ -149,6 +161,15 @@ public class Main {
                 order.addNewOrderLine(newOrderLine);
             }
                 System.out.println(order.getOrderLines());
+//                System.out.println("Let's check of you've god some discount today");
+//                boolean discountAvailable = discountExpirationDate.checkIfListIsQualifiedForDiscount(order);
+//
+//                if(!discountAvailable){
+//                    System.out.println("No discount today!!");
+//                    System.out.println(order.getOrderLines());
+//                }
+//            System.out.println("Woehoew! You god your self some discount!!\n" +
+//                    order.getOrderLines());
 
             }
         }
@@ -256,7 +277,8 @@ public class Main {
                 "1 - show article overview\n" +
                 "2 - add new medicine\n" +
                 "3 - add new charge\n" +
-                "4 - add new customer");
+                "4 - add new customer\n" +
+                "5 - show order overview");
         System.out.println("Choose your action: ");
     }
 
