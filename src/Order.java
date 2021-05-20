@@ -24,12 +24,13 @@ public class Order {
         return Collections.unmodifiableList(orderLineList);
     }
 
-//    public void calculate(Order order){
-//        double sum = 0;
-//        for(int i = 0; i < orderLineList.size(); i==){
-//            sum += orderLineList.g
-//        }
-//    }
+    public double totalPriceOrder(){
+        double priceCounter = 0;
+        for(OrderLine readOrderLine:orderLineList) {
+            priceCounter = priceCounter + (readOrderLine.getPrice() + readOrderLine.getQuantity());
+        }
+        return priceCounter;
+    }
 
 
 

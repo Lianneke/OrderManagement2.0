@@ -27,12 +27,12 @@ public class Main {
         Medicine medicine3 = new Medicine("654", "Naproxen", 3.80);
         Medicine medicine4 = new Medicine("321", "Diclofenac", 1.99);
 
-        Charge charge1 = new Charge("A15", localDate.of(2022,1,1),500);
-        Charge charge2 = new Charge("B85", 2022-07-09, 600);
-        Charge charge3 = new Charge("C78", 2021-06-05, 900);
-        Charge charge4 = new Charge("A85", 22-09-05, 1500);
-        Charge charge5 = new Charge("X01", 22-05-07, 20);
-        Charge charge6 = new Charge("Q83", 21-10-12, 345);
+        Charge charge1 = new Charge("A15", LocalDate.of(2022,1,1),500);
+        Charge charge2 = new Charge("B85", LocalDate.of(2021,6,1), 600);
+        Charge charge3 = new Charge("C78", LocalDate.of(2023,7,6), 900);
+        Charge charge4 = new Charge("A85", LocalDate.of(2022,9,5), 1500);
+        Charge charge5 = new Charge("X01", LocalDate.of(2021,12,23), 20);
+        Charge charge6 = new Charge("Q83", LocalDate.of(2021,11,26), 345);
 
         medicine1.addCharge(charge1);
         medicine1.addCharge(charge2);
