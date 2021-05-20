@@ -15,25 +15,22 @@ public class Main {
         //Adding new medicines, so I can do some test while building this application
         store.addMedicine(new Medicine("123", "Paracetamol 500mg", 1.99));
         store.addMedicine(new Medicine("456", "Bupivacaine 0,25mg", 2.25));
-
-        // Adding new customers, so I can do some test while buidling this application
-        pharmacy.addCustomer(new Customer("1", "ETZ", "Teststraat 6", "06100000", "test@testmail.com"));
-        pharmacy.addCustomer(new Customer("2", "MUMC", "teststraat 10", "06112112", "MUMC@testmail.nl"));
-        Customer customer1 = new Customer("3", "AMC", "test", "068521476", "AMC@testmail.net");
-
-        //Adding new orders, so I can do some test while building this application
         Medicine medicine1 = new Medicine("751", "Papaverine", 1.90);
         Medicine medicine2 = new Medicine("987", "Ibuprofen", 4.90);
         Medicine medicine3 = new Medicine("654", "Naproxen", 3.80);
         Medicine medicine4 = new Medicine("321", "Diclofenac", 1.99);
+        store.addMedicine(medicine1);
+        store.addMedicine(medicine2);
+        store.addMedicine(medicine3);
+        store.addMedicine(medicine4);
 
+        //Adding new charges
         Charge charge1 = new Charge("A15", LocalDate.of(2022,1,1),500);
         Charge charge2 = new Charge("B85", LocalDate.of(2021,6,1), 600);
         Charge charge3 = new Charge("C78", LocalDate.of(2023,7,6), 900);
         Charge charge4 = new Charge("A85", LocalDate.of(2022,9,5), 1500);
         Charge charge5 = new Charge("X01", LocalDate.of(2021,12,23), 20);
         Charge charge6 = new Charge("Q83", LocalDate.of(2021,11,26), 345);
-
         medicine1.addCharge(charge1);
         medicine1.addCharge(charge2);
         medicine2.addCharge(charge3);
@@ -41,14 +38,18 @@ public class Main {
         medicine3.addCharge(charge5);
         medicine4.addCharge(charge6);
 
+        // Adding new customers, so I can do some test while buidling this application
+        pharmacy.addCustomer(new Customer("1", "ETZ", "Teststraat 6", "06100000", "test@testmail.com"));
+        pharmacy.addCustomer(new Customer("2", "MUMC", "teststraat 10", "06112112", "MUMC@testmail.nl"));
+        Customer customer1 = new Customer("3", "AMC", "test", "068521476", "AMC@testmail.net");
+        Order order1 = new Order(customer1, 8430409);
+        Order order2 = new Order(customer1, 8237934);
+
+        //Adding new orderlines
         OrderLine orderLine1 = new OrderLine(medicine1, charge1, 50, medicine1.getPrice());
         OrderLine orderLine2 = new OrderLine(medicine2, charge2, 50, medicine2.getPrice());
         OrderLine orderLine3 = new OrderLine(medicine3, charge5, 10, medicine3.getPrice());
         OrderLine orderLine4 = new OrderLine(medicine4, charge6, 20, medicine4.getPrice());
-
-        Order order1 = new Order(customer1, 8430409);
-        Order order2 = new Order(customer1, 8237934);
-
         order1.addNewOrderLine(orderLine1);
         order1.addNewOrderLine(orderLine2);
         order2.addNewOrderLine(orderLine3);
