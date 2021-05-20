@@ -174,7 +174,7 @@ public class Main {
                     System.out.println("Charge not found");
                     return;
                 }
-
+//hij berekend steeds korting, dat nog nakijken
                 System.out.println("Let's check of you've god some discount today");
                 boolean discountAvailable = discountExpirationDate.checkIfListIsQualifiedForDiscount(existingChargeNumber, existingMedicineRecord);
                 double price = 0;

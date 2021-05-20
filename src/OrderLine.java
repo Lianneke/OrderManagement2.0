@@ -34,6 +34,7 @@ public class OrderLine {
                 "medicine=" + medicine +
                 ", charge=" + charge +
                 ", quantity=" + quantity +
+                ", price=" + price +
                 '}';
     }
 }
