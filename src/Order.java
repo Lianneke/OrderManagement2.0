@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Order {
@@ -19,9 +20,10 @@ public class Order {
     }
 
     public List<OrderLine> getOrderLines(){
-        return this.orderLineList;
+        return Collections.unmodifiableList(orderLineList);
     }
 
+    //kijken of dit netjes onder elkaar gezet kan worden.
     @Override
     public String toString() {
         return "Order{" +

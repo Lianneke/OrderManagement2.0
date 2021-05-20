@@ -7,7 +7,7 @@ public class Main {
     private final static Store store = new Store("CZE");
     private final static Pharmacy pharmacy = new Pharmacy("CZE");
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -104,8 +104,6 @@ public class Main {
 
     private static void order(Order order){
 
-        int k = -1;
-
         while (true){
             System.out.println("Enter 1 to add a new orderline, enter 2 to quit");
             int input = scanner.nextInt();
@@ -114,7 +112,6 @@ public class Main {
             if(input == 2)
                 break;
             else {
-                k++;
 
                 printData(store.getMedicineList());
 

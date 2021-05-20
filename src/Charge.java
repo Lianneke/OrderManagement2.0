@@ -13,7 +13,7 @@ public class Charge {
     }
 
     public boolean checkAndSetQuantity(int quantity){
-        if(this.quantity <= quantity){
+        if(this.quantity < quantity){
             return false;
         }
         this.quantity = this.quantity-quantity;
