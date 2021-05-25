@@ -1,5 +1,6 @@
 package fhict.semester2.application;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,19 +10,24 @@ public class Store {
     private final String storeName;
     private List<Medicine> medicineList;
 
-    public Store(String storeName) {
+    private final DataToExport dataWriter;
+
+    public Store(String storeName, DataToExport dataWriter) {
         this.storeName = storeName;
 
         medicineList = new ArrayList<>();
+
+        this.dataWriter = dataWriter;
     }
 
 
     //Uitzoeken of Edum een toevoeging is om ipv return Null een andere waarde terug te geven
-    public Boolean addMedicine(Medicine medicine){
+    public Boolean addMedicine(Medicine medicine) throws IOException {
         if(findMedicine(medicine.getNumber()) >0){
             return false;
         }
         medicineList.add(medicine);
+        writeData();
         return true;
     }
 
@@ -51,5 +57,10 @@ public class Store {
     public List<Medicine> getMedicineList(){
         return Collections.unmodifiableList(medicineList);
     }
+
+    public void writeData() throws IOException{
+        dataWriter.writeDataToCSVFile(medicineList);
+    }
+
 
 }

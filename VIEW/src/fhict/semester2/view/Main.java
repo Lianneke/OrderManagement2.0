@@ -1,21 +1,22 @@
 package fhict.semester2.view;
 
 import fhict.semester2.application.*;
+import fhict.semester2.data.CsvWriter;
 
-
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-    private final static Store store = new Store("CZE");
+    private final static Store store = new Store("CZE", new CsvWriter("medicineList"));
     private final static Pharmacy pharmacy = new Pharmacy("CZE");
     private final static DiscountExpirationDate discountExpirationDate = new DiscountExpirationDate();
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
 
         //Adding new medicines, so I can do some test while building this application
         store.addMedicine(new Medicine("123", "Paracetamol 500mg", 1.99));
@@ -129,7 +130,7 @@ public class Main {
         }
     }
 
-    private static void addNewMedicine() {
+    private static void addNewMedicine() throws IOException {
         System.out.println("Enter identificationnumber: ");
         String number = scanner.nextLine();
         System.out.println("Enter name: ");
