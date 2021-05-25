@@ -28,7 +28,7 @@ public class Pharmacy {
     }
 
 
-    private void addOrder(Order order){
+    public void addOrder(Order order){
 
         orderList.add(order);
     }

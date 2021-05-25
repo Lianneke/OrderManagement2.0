@@ -145,17 +145,18 @@ public class Main {
         }
     }
 
-    private static void order(Order order){
+    private static void order(Order order) {
 
-        while (true){
+        while (true) {
             System.out.println("Enter 1 to add a new orderline, enter 2 to quit");
             int input = scanner.nextInt();
             scanner.nextLine();
 
-            if(input == 2) {
+            if (input == 2) {
                 printData(order.getOrderLines());
+                pharmacy.addOrder(order);
                 break;
-            }else {
+            } else {
 
                 printData(store.getMedicineList());
 
@@ -180,7 +181,7 @@ public class Main {
                     return;
                 }
 //hij berekend steeds korting, dat nog nakijken
-                System.out.println("Let's check of you've god some discount today");
+                System.out.println("Let's check if you've god some discount today");
                 boolean discountAvailable = discountExpirationDate.checkIfListIsQualifiedForDiscount(existingChargeNumber, existingMedicineRecord);
                 double price = 0;
 
@@ -188,34 +189,34 @@ public class Main {
                     System.out.println("No discount today!!");
                     price = existingMedicineRecord.getPrice();
                     System.out.println("You pay the normal price: " + price);
-                }
-                System.out.println("Woehoew! You god your self some discount!!\n");
-                price = discountExpirationDate.calculateDiscount(existingMedicineRecord);
+                } else {
+                    System.out.println("Woehoew! You god your self some discount!!\n");
+                    price = discountExpirationDate.calculateDiscount(existingMedicineRecord);
 
-                System.out.println("The normal price is: " + existingMedicineRecord.getPrice() + "The discount price is: " + price);
+                    System.out.println("The normal price is: " + existingMedicineRecord.getPrice() + "The discount price is: " + price);
 
 
                     System.out.println("How many pieces do you want to order?");
-                int pieces = scanner.nextInt();
+                    int pieces = scanner.nextInt();
 
-                boolean quantitycheck = existingChargeNumber.checkAndSetQuantity(pieces);
+                    boolean quantitycheck = existingChargeNumber.checkAndSetQuantity(pieces);
 
-                if (!quantitycheck) {
-                    System.out.println("We don't have enough of this charge in our store, please try again");
-                    return;
+                    if (!quantitycheck) {
+                        System.out.println("We don't have enough of this charge in our store, please try again");
+                        return;
+                    }
+                    OrderLine newOrderLine = new OrderLine(existingMedicineRecord, existingChargeNumber, pieces, price);
+
+                    order.addNewOrderLine(newOrderLine);
                 }
-                OrderLine newOrderLine = new OrderLine(existingMedicineRecord, existingChargeNumber, pieces, price);
-
-                order.addNewOrderLine(newOrderLine);
-            }
                 System.out.println(order.getOrderLines());
 
             }
 
 
-            }
+        }
 
-
+    }
 
    private static void collectDataToSearchForMedicine(){
         System.out.println("Enter identificationnumber: ");

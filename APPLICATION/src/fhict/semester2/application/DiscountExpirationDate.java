@@ -17,13 +17,11 @@ public class DiscountExpirationDate implements IPriceCalculator {
             if(daysBetween > discountDays){
                 return false;
             }else{
-                calculateDiscount(medicine);
                 return true;
             }
         }
 
 
-    //nog oplossen dat hij alleen de korting aanpast voor de charge waar het voor geldt, en niet voor alle charges van hetzelfde medicijn.
     @Override
     public double calculateDiscount(Medicine medicine) {
 
