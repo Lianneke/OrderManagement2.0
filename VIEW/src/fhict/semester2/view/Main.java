@@ -2,6 +2,7 @@ package fhict.semester2.view;
 
 import fhict.semester2.application.*;
 
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -180,7 +181,7 @@ public class Main {
                     System.out.println("fhict.semester2.application.Charge not found");
                     return;
                 }
-//hij berekend steeds korting, dat nog nakijken
+
                 System.out.println("Let's check if you've god some discount today");
                 boolean discountAvailable = discountExpirationDate.checkIfListIsQualifiedForDiscount(existingChargeNumber, existingMedicineRecord);
                 double price = 0;
