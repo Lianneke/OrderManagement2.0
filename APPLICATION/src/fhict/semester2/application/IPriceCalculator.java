@@ -1,3 +1,5 @@
+package fhict.semester2.application;
+
 public interface IPriceCalculator {
 
 

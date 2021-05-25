@@ -1,3 +1,5 @@
+package fhict.semester2.application;
+
 import java.time.LocalDate;
 
 public class Charge {
@@ -34,7 +36,7 @@ public class Charge {
 
     @Override
     public String toString() {
-        return "Charge{" +
+        return "fhict.semester2.application.Charge{" +
                 "chargeNumber='" + chargeNumber + '\'' +
                 ", expirationDate=" + expirationDate +
                 ", quantity=" + quantity +

@@ -1,3 +1,5 @@
+package fhict.semester2.application;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -69,7 +71,7 @@ public class Medicine {
 
     @Override
     public String toString() {
-        return "Medicine{" +
+        return "fhict.semester2.application.Medicine{" +
                 "number='" + number + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +

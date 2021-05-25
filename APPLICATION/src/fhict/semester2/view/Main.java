@@ -1,3 +1,7 @@
+package fhict.semester2.view;
+
+import fhict.semester2.application.*;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -172,7 +176,7 @@ public class Main {
                 Charge existingChargeNumber = existingMedicineRecord.queryCharge(chargeNumber);
 
                 if (existingChargeNumber == null) {
-                    System.out.println("Charge not found");
+                    System.out.println("fhict.semester2.application.Charge not found");
                     return;
                 }
 //hij berekend steeds korting, dat nog nakijken
@@ -277,7 +281,7 @@ public class Main {
         Customer existingCustomerRecord = pharmacy.queryCustomer(customerID);
 
         if(existingCustomerRecord == null){
-            System.out.println("Customer not found");
+            System.out.println("fhict.semester2.application.Customer not found");
             return;
         }
         System.out.println("Welcome " + existingCustomerRecord.getName());
@@ -296,7 +300,7 @@ public class Main {
     private static void printOptions(){
         System.out.println("\nAvailable actions:\npress");
         System.out.println("0 - exit\n" +
-                "1 - Customer\n" +
+                "1 - fhict.semester2.application.Customer\n" +
                 "2 - Employee\n");
         System.out.println("Choose your action: ");
     }

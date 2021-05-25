@@ -1,3 +1,5 @@
+package fhict.semester2.application;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,7 +39,7 @@ public class Order {
     //kijken of dit netjes onder elkaar gezet kan worden.
     @Override
     public String toString() {
-        return "Order{" +
+        return "fhict.semester2.application.Order{" +
                 "orderLineList=" + orderLineList +
                 '}';
     }

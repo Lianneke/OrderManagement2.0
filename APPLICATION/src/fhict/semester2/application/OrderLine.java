@@ -1,3 +1,5 @@
+package fhict.semester2.application;
+
 public class OrderLine {
 
     private Medicine medicine;
@@ -30,7 +32,7 @@ public class OrderLine {
 
     @Override
     public String toString() {
-        return "OrderLine{" +
+        return "fhict.semester2.application.OrderLine{" +
                 "medicine=" + medicine +
                 ", charge=" + charge +
                 ", quantity=" + quantity +

@@ -1,3 +1,5 @@
+package fhict.semester2.application;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "fhict.semester2.application.Customer{" +
                 "customerID='" + customerID + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
