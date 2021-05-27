@@ -11,17 +11,19 @@ public class Store {
     private List<Medicine> medicineList;
 
     private final DataToExport dataWriter;
-    private final DataFromImport dataReader;
+//    private final DataFromImport dataReader;
 
-    public Store(String storeName, DataToExport dataWriter, DataFromImport dataReader) throws IOException {
+    public Store(String storeName, DataToExport dataWriter//, DataFromImport dataReader
+    )
+            throws IOException {
         this.storeName = storeName;
 
         medicineList = new ArrayList<>();
 
         this.dataWriter = dataWriter;
-        this.dataReader = dataReader;
+//        this.dataReader = dataReader;
 
-        importMedicineList();
+//        importMedicineList();
     }
 
 
@@ -66,9 +68,9 @@ public class Store {
         dataWriter.writeDataToCSVFile(medicineList);
     }
 
-    private void importMedicineList() throws IOException{
-        medicineList.addAll(dataReader.readDataFromImportCSV());
-    }
+//    private void importMedicineList() throws IOException {
+//            medicineList.addAll(dataReader.readDataFromImportCSV());
+//    }
 
 
 }

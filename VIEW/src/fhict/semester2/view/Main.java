@@ -1,7 +1,7 @@
 package fhict.semester2.view;
 
 import fhict.semester2.application.*;
-import fhict.semester2.data.CsvReader;
+//import fhict.semester2.data.CsvReader;
 import fhict.semester2.data.CsvWriter;
 
 import java.io.IOException;
@@ -11,7 +11,17 @@ import java.util.Scanner;
 
 public class Main  {
 
-    private final static Store store = new Store("CZE", new CsvWriter("medicineList"), new CsvReader("medicineList"));
+    private static Store store = null;
+
+    static {
+        try {
+            store = new Store("CZE", new CsvWriter("medicineList")//, new CsvReader("medicineList")
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private final static Pharmacy pharmacy = new Pharmacy("CZE");
     private final static DiscountExpirationDate discountExpirationDate = new DiscountExpirationDate();
 
