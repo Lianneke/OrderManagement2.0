@@ -1,7 +1,7 @@
 package fhict.semester2.view;
 
 import fhict.semester2.application.*;
-//import fhict.semester2.data.CsvReader;
+import fhict.semester2.data.CsvReader;
 import fhict.semester2.data.CsvWriter;
 
 import java.io.IOException;
@@ -11,16 +11,8 @@ import java.util.Scanner;
 
 public class Main  {
 
-    private static Store store = null;
+    static Store store;
 
-    static {
-        try {
-            store = new Store("CZE", new CsvWriter("medicineList")//, new CsvReader("medicineList")
-            );
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private final static Pharmacy pharmacy = new Pharmacy("CZE");
     private final static DiscountExpirationDate discountExpirationDate = new DiscountExpirationDate();
@@ -29,31 +21,33 @@ public class Main  {
 
     public static void main(String[] args) throws IOException{
 
+        store = new Store("CZE", new CsvWriter("medicineList"), new CsvReader("medicineList"));
+
         //Adding new medicines, so I can do some test while building this application
-        store.addMedicine(new Medicine("123", "Paracetamol 500mg", 1.99));
-        store.addMedicine(new Medicine("456", "Bupivacaine 0,25mg", 2.25));
-        Medicine medicine1 = new Medicine("751", "Papaverine", 1.90);
-        Medicine medicine2 = new Medicine("987", "Ibuprofen", 4.90);
-        Medicine medicine3 = new Medicine("654", "Naproxen", 3.80);
-        Medicine medicine4 = new Medicine("321", "Diclofenac", 1.99);
-        store.addMedicine(medicine1);
-        store.addMedicine(medicine2);
-        store.addMedicine(medicine3);
-        store.addMedicine(medicine4);
+//        store.addMedicine(new Medicine("123", "Paracetamol 500mg", 1.99));
+//        store.addMedicine(new Medicine("456", "Bupivacaine 0.25mg", 2.25));
+//        Medicine medicine1 = new Medicine("751", "Papaverine", 1.90);
+//        Medicine medicine2 = new Medicine("987", "Ibuprofen", 4.90);
+//        Medicine medicine3 = new Medicine("654", "Naproxen", 3.80);
+//        Medicine medicine4 = new Medicine("321", "Diclofenac", 1.99);
+//        store.addMedicine(medicine1);
+//        store.addMedicine(medicine2);
+//        store.addMedicine(medicine3);
+//        store.addMedicine(medicine4);
 
         //Adding new charges
-        Charge charge1 = new Charge("A15", LocalDate.of(2022,1,1),500);
-        Charge charge2 = new Charge("B85", LocalDate.of(2021,6,1), 600);
-        Charge charge3 = new Charge("C78", LocalDate.of(2023,7,6), 900);
-        Charge charge4 = new Charge("A85", LocalDate.of(2022,9,5), 1500);
-        Charge charge5 = new Charge("X01", LocalDate.of(2021,12,23), 20);
-        Charge charge6 = new Charge("Q83", LocalDate.of(2021,11,26), 345);
-        medicine1.addCharge(charge1);
-        medicine1.addCharge(charge2);
-        medicine2.addCharge(charge3);
-        medicine2.addCharge(charge4);
-        medicine3.addCharge(charge5);
-        medicine4.addCharge(charge6);
+//        Charge charge1 = new Charge("A15", LocalDate.of(2022,1,1),500);
+//        Charge charge2 = new Charge("B85", LocalDate.of(2021,6,1), 600);
+//        Charge charge3 = new Charge("C78", LocalDate.of(2023,7,6), 900);
+//        Charge charge4 = new Charge("A85", LocalDate.of(2022,9,5), 1500);
+//        Charge charge5 = new Charge("X01", LocalDate.of(2021,12,23), 20);
+//        Charge charge6 = new Charge("Q83", LocalDate.of(2021,11,26), 345);
+//        medicine1.addCharge(charge1);
+//        medicine1.addCharge(charge2);
+//        medicine2.addCharge(charge3);
+//        medicine2.addCharge(charge4);
+//        medicine3.addCharge(charge5);
+//        medicine4.addCharge(charge6);
 
         // Adding new customers, so I can do some test while buidling this application
         pharmacy.addCustomer(new Customer("1", "ETZ", "Teststraat 6", "06100000", "test@testmail.com"));
@@ -63,14 +57,14 @@ public class Main  {
         Order order2 = new Order(customer1, 8237934);
 
         //Adding new orderlines
-        OrderLine orderLine1 = new OrderLine(medicine1, charge1, 50, medicine1.getPrice());
-        OrderLine orderLine2 = new OrderLine(medicine2, charge2, 50, medicine2.getPrice());
-        OrderLine orderLine3 = new OrderLine(medicine3, charge5, 10, medicine3.getPrice());
-        OrderLine orderLine4 = new OrderLine(medicine4, charge6, 20, medicine4.getPrice());
-        order1.addNewOrderLine(orderLine1);
-        order1.addNewOrderLine(orderLine2);
-        order2.addNewOrderLine(orderLine3);
-        order2.addNewOrderLine(orderLine4);
+//        OrderLine orderLine1 = new OrderLine(medicine1, charge1, 50, medicine1.getPrice());
+//        OrderLine orderLine2 = new OrderLine(medicine2, charge2, 50, medicine2.getPrice());
+//        OrderLine orderLine3 = new OrderLine(medicine3, charge5, 10, medicine3.getPrice());
+//        OrderLine orderLine4 = new OrderLine(medicine4, charge6, 20, medicine4.getPrice());
+//        order1.addNewOrderLine(orderLine1);
+//        order1.addNewOrderLine(orderLine2);
+//        order2.addNewOrderLine(orderLine3);
+//        order2.addNewOrderLine(orderLine4);
 
 
         boolean quit = false;
@@ -190,21 +184,22 @@ public class Main  {
                 Charge existingChargeNumber = existingMedicineRecord.queryCharge(chargeNumber);
 
                 if (existingChargeNumber == null) {
-                    System.out.println("fhict.semester2.application.Charge not found");
+                    System.out.println("Charge not found\n");
                     return;
                 }
 
-                System.out.println("Let's check if you've god some discount today");
-                boolean discountAvailable = discountExpirationDate.checkIfListIsQualifiedForDiscount(existingChargeNumber, existingMedicineRecord);
+                System.out.println("Let's check if you've god some discount today\n");
+                double discountAvailable = discountExpirationDate.checkIfListIsQualifiedForDiscount(existingChargeNumber, existingMedicineRecord);
+
                 double price = 0;
 
-                if (!discountAvailable) {
+                if (discountAvailable == 0.0) {
                     System.out.println("No discount today!!");
                     price = existingMedicineRecord.getPrice();
-                    System.out.println("You pay the normal price: " + price);
+                    System.out.println("You pay the normal price: " + price + "\n");
                 } else {
                     System.out.println("Woehoew! You god your self some discount!!\n");
-                    price = discountExpirationDate.calculateDiscount(existingMedicineRecord);
+                    price = discountAvailable;
 
                     System.out.println("The normal price is: " + existingMedicineRecord.getPrice() + "The discount price is: " + price);
 
@@ -314,7 +309,7 @@ public class Main  {
     private static void printOptions(){
         System.out.println("\nAvailable actions:\npress");
         System.out.println("0 - exit\n" +
-                "1 - fhict.semester2.application.Customer\n" +
+                "1 - Customer\n" +
                 "2 - Employee\n");
         System.out.println("Choose your action: ");
     }

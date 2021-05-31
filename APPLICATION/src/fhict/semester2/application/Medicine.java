@@ -71,11 +71,10 @@ public class Medicine {
 
     @Override
     public String toString() {
-        return "fhict.semester2.application.Medicine{" +
-                "number='" + number + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+        return
+                number + "," +
+                name + "," +
+                price;
     }
 
 
