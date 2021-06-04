@@ -36,9 +36,9 @@ public class Store {
         return true;
     }
 
-    private int findMedicine(Medicine medicine) {
-        return this.medicineList.indexOf(medicine);
-    }
+//    private int findMedicine(Medicine medicine) {
+//        return this.medicineList.indexOf(medicine);
+//    }
 
     private int findMedicine(String medicineNumber) {
         for(int i=0; i<this.medicineList.size(); i++) {

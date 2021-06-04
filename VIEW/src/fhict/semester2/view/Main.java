@@ -15,11 +15,12 @@ public class Main  {
 
 
     private final static Pharmacy pharmacy = new Pharmacy("CZE");
-    private final static DiscountExpirationDate discountExpirationDate = new DiscountExpirationDate();
-
+ //   private final static DiscountExpirationDate discountExpirationDate = new DiscountExpirationDate();
+    private static IPriceCalculator discountExpirationDate;
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException{
+
 
         store = new Store("CZE", new CsvWriter("medicineList"), new CsvReader("medicineList"));
 

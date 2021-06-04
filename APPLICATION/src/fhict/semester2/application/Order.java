@@ -26,6 +26,7 @@ public class Order {
         return Collections.unmodifiableList(orderLineList);
     }
 
+
     public double totalPriceOrder(){
         double priceCounter = 0;
         for(OrderLine readOrderLine:orderLineList) {
