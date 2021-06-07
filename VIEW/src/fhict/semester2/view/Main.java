@@ -11,8 +11,16 @@ import java.util.Scanner;
 
 public class Main  {
 
-    static Store store;
+    private static Store store = null;
 
+    static {
+        try {
+            store = new Store("CZE", new CsvWriter("medicineList"), new CsvReader("medicineList")
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private final static Pharmacy pharmacy = new Pharmacy("CZE");
  //   private final static DiscountExpirationDate discountExpirationDate = new DiscountExpirationDate();
@@ -22,11 +30,9 @@ public class Main  {
     public static void main(String[] args) throws IOException{
 
 
-        store = new Store("CZE", new CsvWriter("medicineList"), new CsvReader("medicineList"));
-
         //Adding new medicines, so I can do some test while building this application
 //        store.addMedicine(new Medicine("123", "Paracetamol 500mg", 1.99));
-//        store.addMedicine(new Medicine("456", "Bupivacaine 0.25mg", 2.25));
+//        store.addMedicine(new Medicine("456", "Bupivacaine 0,25mg", 2.25));
 //        Medicine medicine1 = new Medicine("751", "Papaverine", 1.90);
 //        Medicine medicine2 = new Medicine("987", "Ibuprofen", 4.90);
 //        Medicine medicine3 = new Medicine("654", "Naproxen", 3.80);
@@ -53,9 +59,9 @@ public class Main  {
         // Adding new customers, so I can do some test while buidling this application
         pharmacy.addCustomer(new Customer("1", "ETZ", "Teststraat 6", "06100000", "test@testmail.com"));
         pharmacy.addCustomer(new Customer("2", "MUMC", "teststraat 10", "06112112", "MUMC@testmail.nl"));
-        Customer customer1 = new Customer("3", "AMC", "test", "068521476", "AMC@testmail.net");
-        Order order1 = new Order(customer1, 8430409);
-        Order order2 = new Order(customer1, 8237934);
+//        Customer customer1 = new Customer("3", "AMC", "test", "068521476", "AMC@testmail.net");
+//        Order order1 = new Order(customer1, 8430409);
+//        Order order2 = new Order(customer1, 8237934);
 
         //Adding new orderlines
 //        OrderLine orderLine1 = new OrderLine(medicine1, charge1, 50, medicine1.getPrice());
@@ -185,25 +191,24 @@ public class Main  {
                 Charge existingChargeNumber = existingMedicineRecord.queryCharge(chargeNumber);
 
                 if (existingChargeNumber == null) {
-                    System.out.println("Charge not found\n");
+                    System.out.println("fhict.semester2.application.Charge not found");
                     return;
                 }
 
-                System.out.println("Let's check if you've god some discount today\n");
+                System.out.println("Let's check if you've god some discount today");
                 double discountAvailable = discountExpirationDate.checkIfListIsQualifiedForDiscount(existingChargeNumber, existingMedicineRecord);
-
                 double price = 0;
 
                 if (discountAvailable == 0.0) {
-                    System.out.println("No discount today!!");
+                    System.out.println("No discount today!!\n");
                     price = existingMedicineRecord.getPrice();
                     System.out.println("You pay the normal price: " + price + "\n");
-                } else {
-                    System.out.println("Woehoew! You god your self some discount!!\n");
-                    price = discountAvailable;
+                }else{
+                System.out.println("Woehoew! You god your self some discount!!\n");
+                price = discountAvailable;
 
-                    System.out.println("The normal price is: " + existingMedicineRecord.getPrice() + "The discount price is: " + price);
-
+                System.out.println("The normal price is: " + existingMedicineRecord.getPrice() + "The discount price is: " + price + "\n");
+            }
 
                     System.out.println("How many pieces do you want to order?");
                     int pieces = scanner.nextInt();
@@ -225,7 +230,9 @@ public class Main  {
 
         }
 
-    }
+
+
+
 
    private static void collectDataToSearchForMedicine(){
         System.out.println("Enter identificationnumber: ");
@@ -291,7 +298,7 @@ public class Main  {
         Customer existingCustomerRecord = pharmacy.queryCustomer(customerID);
 
         if(existingCustomerRecord == null){
-            System.out.println("fhict.semester2.application.Customer not found");
+            System.out.println("Customer not found");
             return;
         }
         System.out.println("Welcome " + existingCustomerRecord.getName());
