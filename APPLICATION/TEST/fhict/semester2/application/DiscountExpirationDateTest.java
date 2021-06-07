@@ -4,23 +4,25 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.Assert.assertTrue;
+import static junit.framework.TestCase.assertEquals;
 
 public class DiscountExpirationDateTest {
 
     @Test
-    public void checkIfListIsQualifiedForDiscount_true() {
-        DiscountExpirationDateTest discountExpirationDateTest = new DiscountExpirationDateTest();
-        Medicine medicineTest = new Medicine("123", "Paracetamol", 1.99);
-        Charge chargeTest = new Charge("a15", LocalDate.of(2021,6,20), 100);
+    public void checkIfListIsQualifiedForDiscount_false() {
+    Charge testCharge = new Charge("a15", LocalDate.of(2021, 8, 20), 100);
+    Medicine testMedicine = new Medicine("123", "Paracetamol", 2);
+    DiscountExpirationDate testDiscountExpirationDate = new DiscountExpirationDate();
 
-        assertTrue(chargeTest.getExpirationDate().toString());
-
+    assertEquals(0.0, testDiscountExpirationDate.checkIfListIsQualifiedForDiscount(testCharge, testMedicine));
     }
-
 
 
     @Test
     public void calculateDiscount() {
+        Medicine testMedicine = new Medicine("123", "Paracetamol", 2);
+        DiscountExpirationDate testDiscountExpirationDate = new DiscountExpirationDate();
+
+        assertEquals(1.5, testDiscountExpirationDate.calculateDiscount(testMedicine));
     }
 }

@@ -62,5 +62,7 @@ public class Pharmacy {
         return Collections.unmodifiableList(orderList);
     }
 
-
+    public String getName() {
+        return name;
+    }
 }
