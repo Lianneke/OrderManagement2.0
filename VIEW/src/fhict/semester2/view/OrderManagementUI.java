@@ -35,6 +35,8 @@ public class OrderManagementUI {
                 "1 - Customer\n" +
                 "2 - Employee\n");
         System.out.println("Choose your action: ");
+        scanner = new Scanner(System.in);
+
         int choice = scanner.nextInt();
            scanner.nextLine();
         userOptions(choice);

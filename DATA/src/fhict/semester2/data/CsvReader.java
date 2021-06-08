@@ -35,11 +35,11 @@ public class CsvReader implements DataFromImport {
                 dataInput = new Medicine(data[0], data[1], Double.parseDouble(data[2]));
                 medicineList.add(dataInput);
             }
-                try {
+            //    try {
                     csvReader.close();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+            //    } catch (IOException ex) {
+            //        ex.printStackTrace();
+            //    }
 
 
         }
