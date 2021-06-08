@@ -32,7 +32,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "fhict.semester2.application.Customer{" +
+        return "Customer{" +
                 "customerID='" + customerID + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +

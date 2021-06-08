@@ -22,11 +22,6 @@ public class CsvWriter implements DataToExport {
             csvWriter.append("\n");
         }
         csvWriter.flush();
-    //    try {
             csvWriter.close();
-    //    }catch (IOException ex){
-         //   ex.printStackTrace();
-    //    }
-
     }
 }

@@ -8,9 +8,9 @@ public class Medicine {
 
     private final String number;
     private final String name;
-    private double price;
+    private final double price;
 
-    private List<Charge> chargeList;
+    private final List<Charge> chargeList;
 
     public Medicine(String number, String name, double price) {
         this.number = number;
@@ -20,7 +20,6 @@ public class Medicine {
         chargeList = new ArrayList<>();
     }
 
-//Uitzoeken of Edum een toevoeging is om ipv return Null een andere waarde terug te geven
     public boolean addCharge(Charge charge){
         if(findCharge(charge.getChargeNumber()) >0){
             return false;
@@ -61,9 +60,6 @@ public class Medicine {
         return number;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
     public List<Charge> getChargeList(){
         return Collections.unmodifiableList(chargeList);

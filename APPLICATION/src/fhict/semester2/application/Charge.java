@@ -36,7 +36,7 @@ public class Charge {
 
     @Override
     public String toString() {
-        return "fhict.semester2.application.Charge{" +
+        return "Charge{" +
                 "chargeNumber='" + chargeNumber + '\'' +
                 ", expirationDate=" + expirationDate +
                 ", quantity=" + quantity +

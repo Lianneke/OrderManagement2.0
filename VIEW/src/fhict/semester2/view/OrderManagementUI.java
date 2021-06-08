@@ -1,6 +1,8 @@
 package fhict.semester2.view;
 
 import fhict.semester2.application.*;
+import fhict.semester2.data.CsvReader;
+import fhict.semester2.data.CsvWriter;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -9,19 +11,23 @@ import java.util.Scanner;
 
 public class OrderManagementUI {
 
-    private Pharmacy pharmacy;
-    private Store store;
-    private Scanner scanner;
+    private final Pharmacy pharmacy;
+    private final Store store = new Store("CZE", new CsvWriter("medicineList"), new CsvReader("medicineList"));
+    private final Scanner scanner;
     private DiscountExpirationDate discountExpirationDate;
 
 
-    public OrderManagementUI(Pharmacy pharmacy) {
+    public OrderManagementUI(Pharmacy pharmacy) throws IOException {
         this.pharmacy = pharmacy;
+        scanner= new Scanner(System.in);
+
+        pharmacy.addCustomer(new Customer("1", "ETZ", "Teststraat 6", "06100000", "test@testmail.com"));
+        pharmacy.addCustomer(new Customer("2", "MUMC", "teststraat 10", "06112112", "MUMC@testmail.nl"));
+
     }
 
     public void startUI() throws IOException {
         welcomeMessage();
-      //  printOptions();
     }
 
     private void welcomeMessage() throws IOException {
@@ -35,7 +41,6 @@ public class OrderManagementUI {
                 "1 - Customer\n" +
                 "2 - Employee\n");
         System.out.println("Choose your action: ");
-        scanner = new Scanner(System.in);
 
         int choice = scanner.nextInt();
            scanner.nextLine();
@@ -67,11 +72,17 @@ public class OrderManagementUI {
                             break;
                         case 2:
                             searchCustomer();
+                            break;
+                        case 3:
+                            printOptions();
+                            break;
                         default:
                             printCustomerOptions();
+                            break;
 
                     }
                     break;
+
 
                 case 2:
                     printEmployeeOptions();
@@ -80,7 +91,9 @@ public class OrderManagementUI {
                     switch (employeeAction) {
                         case 0:
                             System.out.println("bye");
+                            quit = true;
                             break;
+
                         case 1:
                             printData(store.getMedicineList());
                             break;
@@ -96,8 +109,13 @@ public class OrderManagementUI {
                             break;
                         case 5:
                             printData(pharmacy.getOrderList());
+                            break;
+                        case 6:
+                            printOptions();
+                            break;
                         default:
                             printEmployeeOptions();
+                            break;
                     }
                     break;
 
@@ -112,7 +130,8 @@ public class OrderManagementUI {
             System.out.println("\nAvailable actions:\npress");
             System.out.println("0 - exit\n" +
                     "1 - show article overview\n" +
-                    "2 - start to order\n");
+                    "2 - start to order\n" +
+                    "3 - go back to choose a different user");
             System.out.println("Choose your action: ");
         }
 
@@ -123,7 +142,8 @@ public class OrderManagementUI {
                 "2 - add new medicine\n" +
                 "3 - add new charge\n" +
                 "4 - add new customer\n" +
-                "5 - show order overview");
+                "5 - show order overview\n" +
+                "6 - go back to choose a different user");
         System.out.println("Choose your action: ");
     }
 
@@ -235,6 +255,7 @@ public class OrderManagementUI {
                 printData(order.getOrderLines());
                 pharmacy.addOrder(order);
                 break;
+
             } else {
 
                 printData(store.getMedicineList());

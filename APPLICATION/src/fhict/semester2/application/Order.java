@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Order {
 
-    private Customer customer;
-    private long orderNumber;
+    private final Customer customer;
+    private final long orderNumber;
     private double totalPrice;
     private List<OrderLine> orderLineList;
 
