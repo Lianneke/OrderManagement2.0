@@ -18,10 +18,6 @@ public class OrderLine {
         return medicine;
     }
 
-    public Charge getCharge() {
-        return charge;
-    }
-
     public int getQuantity() {
         return quantity;
     }
@@ -32,11 +28,11 @@ public class OrderLine {
 
     @Override
     public String toString() {
-        return "fhict.semester2.application.OrderLine{" +
+        return "OrderLine{" +
                 "medicine=" + medicine +
                 ", charge=" + charge +
                 ", quantity=" + quantity +
-                ", price=" + price +
+                ", price=" + price + "\n" +
                 '}';
     }
 }

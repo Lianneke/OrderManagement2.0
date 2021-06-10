@@ -40,8 +40,8 @@ public class Order {
     //kijken of dit netjes onder elkaar gezet kan worden.
     @Override
     public String toString() {
-        return "fhict.semester2.application.Order{" +
-                "orderLineList=" + orderLineList +
+        return "Order{" +
+                "orderLineList=" + orderLineList + "\n" +
                 '}';
     }
 }

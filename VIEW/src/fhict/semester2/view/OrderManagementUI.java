@@ -147,7 +147,6 @@ public class OrderManagementUI {
         System.out.println("Choose your action: ");
     }
 
-    //Find a solution to generate a new ordernumber automatically
     private void createNewOrder(Customer customer){
         System.out.println("Enter date+time. Example 202105101229");
         long orderNumber = scanner.nextLong();

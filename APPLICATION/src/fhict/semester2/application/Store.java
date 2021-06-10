@@ -25,8 +25,6 @@ public class Store {
         importMedicineList();
     }
 
-
-    //Uitzoeken of Edum een toevoeging is om ipv return Null een andere waarde terug te geven
     public Boolean addMedicine(Medicine medicine) throws IOException {
         if(findMedicine(medicine.getNumber()) >0){
             return false;
@@ -36,9 +34,6 @@ public class Store {
         return true;
     }
 
-//    private int findMedicine(Medicine medicine) {
-//        return this.medicineList.indexOf(medicine);
-//    }
 
     private int findMedicine(String medicineNumber) {
         for(int i=0; i<this.medicineList.size(); i++) {
