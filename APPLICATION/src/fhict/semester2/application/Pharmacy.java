@@ -20,7 +20,7 @@ public class Pharmacy {
     }
 
     public boolean addCustomer(Customer customer){
-        if(findCustomer(customer.getCustomerID()) >0){
+        if(findCustomer(customer.getCustomerID()) >= 0){
             return false;
         }
         customerList.add(customer);

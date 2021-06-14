@@ -26,7 +26,7 @@ public class Store {
     }
 
     public Boolean addMedicine(Medicine medicine) throws IOException {
-        if(findMedicine(medicine.getNumber()) >0){
+        if(findMedicine(medicine.getNumber()) >= 0){
             return false;
         }
         medicineList.add(medicine);

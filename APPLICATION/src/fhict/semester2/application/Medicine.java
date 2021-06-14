@@ -9,6 +9,7 @@ public class Medicine {
     private final String number;
     private final String name;
     private final double price;
+    private int totalQuantity;
 
     private final List<Charge> chargeList;
 
@@ -18,10 +19,23 @@ public class Medicine {
         this.price = price;
 
         chargeList = new ArrayList<>();
+
+        setTotalQuantity();
+
     }
 
+    public void setTotalQuantity(){
+        int quantityCounter = 0;
+        for(Charge readCharge:chargeList){
+            quantityCounter = quantityCounter + (readCharge.getQuantity());
+        }
+        this.totalQuantity = quantityCounter;
+    }
+
+
+
     public boolean addCharge(Charge charge){
-        if(findCharge(charge.getChargeNumber()) >0){
+        if(findCharge(charge.getChargeNumber()) >=0){
             return false;
         }
         chargeList.add(charge);
@@ -70,7 +84,8 @@ public class Medicine {
         return
                 number + "," +
                 name + "," +
-                price;
+                price + "," +
+                totalQuantity;
     }
 
 

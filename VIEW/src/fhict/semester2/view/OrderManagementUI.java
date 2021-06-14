@@ -17,8 +17,9 @@ public class OrderManagementUI {
     private DiscountExpirationDate discountExpirationDate;
 
 
-    public OrderManagementUI(Pharmacy pharmacy) throws IOException {
+    public OrderManagementUI(Pharmacy pharmacy, DiscountExpirationDate discountExpirationDate) throws IOException {
         this.pharmacy = pharmacy;
+        this.discountExpirationDate = discountExpirationDate;
         scanner= new Scanner(System.in);
 
         pharmacy.addCustomer(new Customer("1", "ETZ", "Teststraat 6", "06100000", "test@testmail.com"));
